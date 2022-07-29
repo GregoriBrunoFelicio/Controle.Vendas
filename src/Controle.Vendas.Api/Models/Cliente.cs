@@ -1,8 +1,7 @@
 ﻿namespace Controle.Vendas.Api.Models
 {
-    public class Cliente
+    public class Cliente: Entity
     {
-        public int Id { get; set; }
         public string Nome { get; set; } = default!;
         public string Sobrenome { get; set; } = default!;
 

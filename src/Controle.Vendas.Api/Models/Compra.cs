@@ -1,8 +1,7 @@
 ﻿namespace Controle.Vendas.Api.Models
 {
-    public class Compra
+    public class Compra: Entity
     {
-        public int Id { get; set; }
         public DateTime Data { get; set; }
 
         public virtual Produto Produto { get; set; }
