@@ -34,6 +34,7 @@ namespace Controle.Vendas.Api.Data.Repositories
         {
             var objFromDb = await _dbSet.FindAsync(entity.Id);
             _context.Entry(objFromDb).CurrentValues.SetValues(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }
