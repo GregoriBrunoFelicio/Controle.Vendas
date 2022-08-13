@@ -12,6 +12,7 @@ builder.Services.AddDbContext<ControleVendasContext>(options => options.UseSqlSe
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<ITipoClienteRepository, TipoClienteRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<ICompraRepository, CompraRepository>();
 
 var app = builder.Build();
 

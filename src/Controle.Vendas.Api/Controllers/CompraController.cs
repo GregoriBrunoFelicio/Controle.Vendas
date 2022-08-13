@@ -1,5 +1,6 @@
+using Controle.Vendas.Api.Commands;
 using Controle.Vendas.Api.Data.Repositories;
-using Controle.Vendas.Api.Models;
+using Controle.Vendas.Api.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controle.Vendas.Api.Controllers
@@ -13,10 +14,16 @@ namespace Controle.Vendas.Api.Controllers
         public CompraController(ICompraRepository CompraRepository) => _compraRepository = CompraRepository;
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Compra compra)
+        public async Task<IActionResult> Post([FromBody] CriarCompraCommand command)
         {
             try
             {
+                var compra = new Compra()
+                {
+                    ClienteId = command.ClienteId,
+                    ProdutoId = command.ProdutoId,
+                    Data = DateTime.Now
+                };
                 await _compraRepository.Add(compra);
                 return Ok();
             }
@@ -27,10 +34,16 @@ namespace Controle.Vendas.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] Compra compra)
+        public async Task<IActionResult> Put([FromBody] CriarCompraCommand command)
         {
             try
             {
+                var compra = new Compra()
+                {
+                    ClienteId = command.ClienteId,
+                    ProdutoId = command.ProdutoId,
+                };
+
                 await _compraRepository.Update(compra);
                 return Ok();
             }
@@ -39,4 +52,5 @@ namespace Controle.Vendas.Api.Controllers
                 return BadRequest(exception.Message);
             }
         }
-    }}
+    }
+}

@@ -1,5 +1,5 @@
 using Controle.Vendas.Api.Data.Repositories;
-using Controle.Vendas.Api.Models;
+using Controle.Vendas.Api.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controle.Vendas.Api.Controllers

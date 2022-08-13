@@ -1,4 +1,6 @@
-﻿namespace Controle.Vendas.Api.Models
+﻿using Controle.Vendas.Api.Entidades;
+
+namespace Controle.Vendas.Api.Entidades
 {
     public class TipoCliente: Entity
     {

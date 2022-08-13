@@ -1,4 +1,4 @@
-﻿namespace Controle.Vendas.Api.Models
+﻿namespace Controle.Vendas.Api.Entidades
 {
     public class Produto: Entity
     {

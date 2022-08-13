@@ -22,7 +22,7 @@ namespace Controle.Vendas.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Cliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace Controle.Vendas.Api.Migrations
                     b.ToTable("Cliente");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Compra", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Compra", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,29 +56,31 @@ namespace Controle.Vendas.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ClienteId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Pago")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
+                    b.HasIndex("ProdutoId");
+
                     b.ToTable("Compra");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Produto", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Produto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CompraId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -89,12 +91,10 @@ namespace Controle.Vendas.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompraId");
-
                     b.ToTable("Produto");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.TipoCliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.TipoCliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,9 +111,9 @@ namespace Controle.Vendas.Api.Migrations
                     b.ToTable("TipoCliente");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Cliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Cliente", b =>
                 {
-                    b.HasOne("Controle.Vendas.Api.Models.TipoCliente", "TipoCliente")
+                    b.HasOne("Controle.Vendas.Api.Entidades.TipoCliente", "TipoCliente")
                         .WithMany()
                         .HasForeignKey("TipoClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -122,28 +122,28 @@ namespace Controle.Vendas.Api.Migrations
                     b.Navigation("TipoCliente");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Compra", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Compra", b =>
                 {
-                    b.HasOne("Controle.Vendas.Api.Models.Cliente", null)
+                    b.HasOne("Controle.Vendas.Api.Entidades.Cliente", "Cliente")
                         .WithMany("Compras")
-                        .HasForeignKey("ClienteId");
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Controle.Vendas.Api.Entidades.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Produto");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Produto", b =>
-                {
-                    b.HasOne("Controle.Vendas.Api.Models.Compra", null)
-                        .WithMany("Produtos")
-                        .HasForeignKey("CompraId");
-                });
-
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Cliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Cliente", b =>
                 {
                     b.Navigation("Compras");
-                });
-
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Compra", b =>
-                {
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }
