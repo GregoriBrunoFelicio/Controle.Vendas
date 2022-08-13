@@ -2,9 +2,9 @@
 {
     public class Compra: Entity
     {
-        public DateTime Data { get; set; }
+        public decimal? Total => Produtos.Sum(x => x.Preco);
+        public bool Pago { get; set; }
 
-        public virtual Produto Produto { get; set; }
-        public virtual Conta Conta { get; set; }
+        public virtual IList<Produto> Produtos { get; set; }
     }
 }

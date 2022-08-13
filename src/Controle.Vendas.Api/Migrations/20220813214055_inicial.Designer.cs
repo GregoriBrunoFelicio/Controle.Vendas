@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Controle.Vendas.Api.Migrations
 {
     [DbContext(typeof(ControleVendasContext))]
-    [Migration("20220726233615_Inicial")]
-    partial class Inicial
+    [Migration("20220813214055_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,9 +32,6 @@ namespace Controle.Vendas.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ContaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -47,8 +44,6 @@ namespace Controle.Vendas.Api.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ContaId");
 
                     b.HasIndex("TipoClienteId");
 
@@ -63,38 +58,17 @@ namespace Controle.Vendas.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ContaId")
+                    b.Property<int?>("ClienteId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContaId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("Compra");
-                });
-
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Conta", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("Pago")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Conta");
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Compra");
                 });
 
             modelBuilder.Entity("Controle.Vendas.Api.Models.Produto", b =>
@@ -105,6 +79,9 @@ namespace Controle.Vendas.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("CompraId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -113,6 +90,8 @@ namespace Controle.Vendas.Api.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompraId");
 
                     b.ToTable("Produto");
                 });
@@ -136,45 +115,37 @@ namespace Controle.Vendas.Api.Migrations
 
             modelBuilder.Entity("Controle.Vendas.Api.Models.Cliente", b =>
                 {
-                    b.HasOne("Controle.Vendas.Api.Models.Conta", "Conta")
-                        .WithMany()
-                        .HasForeignKey("ContaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Controle.Vendas.Api.Models.TipoCliente", "TipoCliente")
                         .WithMany()
                         .HasForeignKey("TipoClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Conta");
-
                     b.Navigation("TipoCliente");
                 });
 
             modelBuilder.Entity("Controle.Vendas.Api.Models.Compra", b =>
                 {
-                    b.HasOne("Controle.Vendas.Api.Models.Conta", "Conta")
+                    b.HasOne("Controle.Vendas.Api.Models.Cliente", null)
                         .WithMany("Compras")
-                        .HasForeignKey("ContaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Controle.Vendas.Api.Models.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Conta");
-
-                    b.Navigation("Produto");
+                        .HasForeignKey("ClienteId");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Models.Conta", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Models.Produto", b =>
+                {
+                    b.HasOne("Controle.Vendas.Api.Models.Compra", null)
+                        .WithMany("Produtos")
+                        .HasForeignKey("CompraId");
+                });
+
+            modelBuilder.Entity("Controle.Vendas.Api.Models.Cliente", b =>
                 {
                     b.Navigation("Compras");
+                });
+
+            modelBuilder.Entity("Controle.Vendas.Api.Models.Compra", b =>
+                {
+                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

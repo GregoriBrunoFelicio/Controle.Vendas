@@ -1,3 +1,4 @@
+using Controle.Vendas.Api.Commands;
 using Controle.Vendas.Api.Data.Repositories;
 using Controle.Vendas.Api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,17 @@ namespace Controle.Vendas.Api.Controllers
         public ClienteController(IClienteRepository ClienteRepository) => _clienteRepository = ClienteRepository;
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Cliente cliente)
+        public async Task<IActionResult> Post([FromBody] CriaClienteCommand command)
         {
             try
             {
+                var cliente = new Cliente
+                {
+                    Nome = command.Nome,
+                    Sobrenome = command.Sobrenome,
+                    TipoClienteId = command.TipoClienteId
+                };
+
                 await _clienteRepository.Add(cliente);
                 return Ok();
             }
@@ -39,4 +47,5 @@ namespace Controle.Vendas.Api.Controllers
                 return BadRequest(exception.Message);
             }
         }
-    }}
+    }
+}

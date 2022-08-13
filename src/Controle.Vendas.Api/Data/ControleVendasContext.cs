@@ -9,7 +9,6 @@ namespace Controle.Vendas.Api.Data
         public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<Produto> Produto { get; set; }
         public virtual DbSet<TipoCliente> TipoCliente { get; set; }
-        public virtual DbSet<Conta> Conta { get; set; }
 
         public ControleVendasContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
