@@ -1,3 +1,4 @@
+using Controle.Vendas.Api.Commands;
 using Controle.Vendas.Api.Data.Repositories;
 using Controle.Vendas.Api.Entidades;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,16 @@ namespace Controle.Vendas.Api.Controllers
         public ProdutoController(IProdutoRepository produtoRepository) => _produtoRepository = produtoRepository;
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Produto produto)
+        public async Task<IActionResult> Post([FromBody] CriarProdutoCommand command)
         {
             try
             {
+                var produto = new Produto
+                {
+                    Nome = command.Nome,
+                    Preco = command.Preco,
+                };
+
                 await _produtoRepository.Add(produto);
                 return Ok();
             }
@@ -27,10 +34,17 @@ namespace Controle.Vendas.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] Produto produto)
+        public async Task<IActionResult> Put([FromBody] AtualizarProdutoCommand command)
         {
             try
             {
+                var produto = new Produto()
+                {
+                    Id = command.Id,
+                    Nome = command.Nome,
+                    Preco = command.Preco,
+                };
+
                 await _produtoRepository.Update(produto);
                 return Ok();
             }

@@ -1,5 +1,5 @@
 ﻿using Controle.Vendas.Api.Entidades;
-using Controle.Vendas.Api.Entidades;
+using Controle.Vendas.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Controle.Vendas.Api.Data

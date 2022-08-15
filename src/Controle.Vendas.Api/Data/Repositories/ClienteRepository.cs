@@ -5,7 +5,7 @@ namespace Controle.Vendas.Api.Data.Repositories
 {
     public interface IClienteRepository : IRepository<Cliente>
     {
-        public Task<IEnumerable<Cliente>> GetAll();
+        public Task<IEnumerable<Cliente>> ObterPorMes();
     }
 
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
@@ -14,10 +14,14 @@ namespace Controle.Vendas.Api.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<Cliente>> GetAll() =>
-           await _dbSet
-              .Include(x => x.Compras).ThenInclude(x => x.Produto)
-              .Include(x => x.TipoCliente)
-              .ToListAsync();
+        public async Task<IEnumerable<Cliente>> ObterPorMes()
+        {
+            var dataAtual = DateTime.Now;
+
+            return await _dbSet
+                .Include(x => x.Compras).ThenInclude(x => x.Produto)
+                .Include(x => x.TipoCliente)
+                .ToListAsync();
+        }
     }
 }

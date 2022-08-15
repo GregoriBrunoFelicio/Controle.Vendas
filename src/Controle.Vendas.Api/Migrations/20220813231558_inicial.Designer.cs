@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Controle.Vendas.Api.Migrations
 {
     [DbContext(typeof(ControleVendasContext))]
-    [Migration("20220813221632_inicial")]
+    [Migration("20220813231558_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

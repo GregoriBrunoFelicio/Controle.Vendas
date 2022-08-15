@@ -35,10 +35,18 @@ namespace Controle.Vendas.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] Cliente cliente)
+        public async Task<IActionResult> Put([FromBody] AtualizarClienteCommand command)
         {
             try
             {
+                var cliente = new Cliente()
+                {
+                    Id = command.Id,
+                    Nome = command.Nome,
+                    Sobrenome = command.Sobrenome,
+                    TipoClienteId = command.TipoClienteId,
+                };
+
                 await _clienteRepository.Update(cliente);
                 return Ok();
             }
@@ -49,10 +57,7 @@ namespace Controle.Vendas.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Cliente>> GetAll()
-        {
-            return await _clienteRepository.GetAll();    
-        }
-
+        public async Task<IEnumerable<Cliente>> GetAll() =>
+             await _clienteRepository.ObterPorMes();
     }
 }

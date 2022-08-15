@@ -1,6 +1,6 @@
 using Controle.Vendas.Api.Commands;
 using Controle.Vendas.Api.Data.Repositories;
-using Controle.Vendas.Api.Entidades;
+using Controle.Vendas.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controle.Vendas.Api.Controllers
@@ -34,12 +34,13 @@ namespace Controle.Vendas.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] CriarCompraCommand command)
+        public async Task<IActionResult> Put([FromBody] AtualizarCompraCommand command)
         {
             try
             {
                 var compra = new Compra()
                 {
+                    Id = command.Id,
                     ClienteId = command.ClienteId,
                     ProdutoId = command.ProdutoId,
                 };
