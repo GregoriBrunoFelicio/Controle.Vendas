@@ -56,8 +56,12 @@ namespace Controle.Vendas.Api.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<Cliente>> GetAll() =>
-             await _clienteRepository.ObterPorMes();
+        [HttpGet("ComCompras")]
+        public async Task<IEnumerable<Cliente>> ObterTodosPorMes() =>
+             await _clienteRepository.ObterComCompras();
+
+        [HttpGet()]
+        public async Task<IEnumerable<Cliente>> ObterTodos() =>
+              await _clienteRepository.ObterTodos();
     }
 }

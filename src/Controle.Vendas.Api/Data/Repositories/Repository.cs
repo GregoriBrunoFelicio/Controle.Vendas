@@ -8,6 +8,7 @@ namespace Controle.Vendas.Api.Data.Repositories
         Task Add(T entity);
         Task Update(T entity);
         Task<T> Get(int id);
+        Task<IEnumerable<T>> GetAll();
     }
 
     public class Repository<T> : IRepository<T> where T : Entity
@@ -29,6 +30,8 @@ namespace Controle.Vendas.Api.Data.Repositories
 
         public async Task<T> Get(int id) =>
             await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<IEnumerable<T>> GetAll() => await _dbSet.ToListAsync();
 
         public async Task Update(T entity)
         {
