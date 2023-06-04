@@ -1,6 +1,6 @@
 using Controle.Vendas.Api.Commands;
 using Controle.Vendas.Api.Data.Repositories;
-using Controle.Vendas.Api.Entidades;
+using Controle.Vendas.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controle.Vendas.Api.Controllers
@@ -24,7 +24,7 @@ namespace Controle.Vendas.Api.Controllers
                     Preco = command.Preco,
                 };
 
-                await _produtoRepository.Add(produto);
+                await _produtoRepository.AddAsync(produto);
                 return Ok();
             }
             catch (Exception exception)
@@ -45,7 +45,7 @@ namespace Controle.Vendas.Api.Controllers
                     Preco = command.Preco,
                 };
 
-                await _produtoRepository.Update(produto);
+                await _produtoRepository.UpdateAsync(produto);
                 return Ok();
             }
             catch (Exception exception)

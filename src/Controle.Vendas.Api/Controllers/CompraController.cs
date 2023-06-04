@@ -11,7 +11,7 @@ namespace Controle.Vendas.Api.Controllers
     {
         private readonly ICompraRepository _compraRepository;
 
-        public CompraController(ICompraRepository CompraRepository) => _compraRepository = CompraRepository;
+        public CompraController(ICompraRepository compraRepository) => _compraRepository = compraRepository;
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CriarCompraCommand command)
@@ -24,7 +24,7 @@ namespace Controle.Vendas.Api.Controllers
                     ProdutoId = command.ProdutoId,
                     Data = DateTime.Now
                 };
-                await _compraRepository.Add(compra);
+                await _compraRepository.AddAsync(compra);
                 return Ok();
             }
             catch (Exception exception)
@@ -45,7 +45,7 @@ namespace Controle.Vendas.Api.Controllers
                     ProdutoId = command.ProdutoId,
                 };
 
-                await _compraRepository.Update(compra);
+                await _compraRepository.UpdateAsync(compra);
                 return Ok();
             }
             catch (Exception exception)

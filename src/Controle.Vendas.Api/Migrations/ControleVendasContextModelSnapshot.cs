@@ -22,13 +22,33 @@ namespace Controle.Vendas.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Cliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entidades.TipoCliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoCliente");
+                });
+
+            modelBuilder.Entity("Controle.Vendas.Api.Entities.Cliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -48,7 +68,7 @@ namespace Controle.Vendas.Api.Migrations
                     b.ToTable("Cliente");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Compra", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entities.Compra", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +94,7 @@ namespace Controle.Vendas.Api.Migrations
                     b.ToTable("Compra");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Produto", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entities.Produto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,24 +114,7 @@ namespace Controle.Vendas.Api.Migrations
                     b.ToTable("Produto");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.TipoCliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoCliente");
-                });
-
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Cliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entities.Cliente", b =>
                 {
                     b.HasOne("Controle.Vendas.Api.Entidades.TipoCliente", "TipoCliente")
                         .WithMany()
@@ -122,15 +125,15 @@ namespace Controle.Vendas.Api.Migrations
                     b.Navigation("TipoCliente");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Compra", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entities.Compra", b =>
                 {
-                    b.HasOne("Controle.Vendas.Api.Entidades.Cliente", "Cliente")
+                    b.HasOne("Controle.Vendas.Api.Entities.Cliente", "Cliente")
                         .WithMany("Compras")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Controle.Vendas.Api.Entidades.Produto", "Produto")
+                    b.HasOne("Controle.Vendas.Api.Entities.Produto", "Produto")
                         .WithMany()
                         .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -141,7 +144,7 @@ namespace Controle.Vendas.Api.Migrations
                     b.Navigation("Produto");
                 });
 
-            modelBuilder.Entity("Controle.Vendas.Api.Entidades.Cliente", b =>
+            modelBuilder.Entity("Controle.Vendas.Api.Entities.Cliente", b =>
                 {
                     b.Navigation("Compras");
                 });

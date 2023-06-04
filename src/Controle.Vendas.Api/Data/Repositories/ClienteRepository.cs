@@ -1,12 +1,13 @@
 ﻿using Controle.Vendas.Api.Entidades;
+using Controle.Vendas.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Controle.Vendas.Api.Data.Repositories
 {
     public interface IClienteRepository : IRepository<Cliente>
     {
-        public Task<IEnumerable<Cliente>> ObterComCompras();
-        public Task<IEnumerable<Cliente>> ObterTodos();
+        Task<IEnumerable<Cliente>> ComDividaAsync();
+        Task InativarAsync(Cliente cliente);
     }
 
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
@@ -15,17 +16,28 @@ namespace Controle.Vendas.Api.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<Cliente>> ObterComCompras()
+        public async Task<IEnumerable<Cliente>> ComDividaAsync()
         {
-            return await _dbSet
-                .Include(x => x.Compras).ThenInclude(x => x.Produto)
-                .Include(x => x.TipoCliente)
+            var clientesComDividas = await DbSet
+                .AsNoTracking()
+                .Where(x => x.Ativo && x.Compras!.Any())
                 .ToListAsync();
-        }
 
-        public async Task<IEnumerable<Cliente>> ObterTodos() => await _dbSet
-                .Include(x => x.Compras).ThenInclude(x => x.Produto)
-                .Include(x => x.TipoCliente)
+            return clientesComDividas.OrderByDescending(x => x.TotalDivida);
+        }
+            
+
+        public override async Task<IEnumerable<Cliente>> GetAllAsync() =>
+            await DbSet
+                .AsNoTracking()
+                .Where(x => x.Ativo)
+                .OrderBy(x => x.Nome)
                 .ToListAsync();
+
+        public async Task InativarAsync(Cliente cliente)
+        {
+            cliente.Ativo = false;
+            await UpdateAsync(cliente);
+        }
     }
 }

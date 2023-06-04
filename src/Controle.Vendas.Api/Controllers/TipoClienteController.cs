@@ -17,7 +17,7 @@ namespace Controle.Vendas.Api.Controllers
         {
             try
             {
-                await _tipoClienteRepository.Add(tipoCliente);
+                await _tipoClienteRepository.AddAsync(tipoCliente);
                 return Ok();
             }
             catch (Exception exception)
@@ -31,7 +31,7 @@ namespace Controle.Vendas.Api.Controllers
         {
             try
             {
-                await _tipoClienteRepository.Update(tipoCliente);
+                await _tipoClienteRepository.UpdateAsync(tipoCliente);
                 return Ok();
             }
             catch (Exception exception)
@@ -39,4 +39,19 @@ namespace Controle.Vendas.Api.Controllers
                 return BadRequest(exception.Message);
             }
         }
-    }}
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var tiposCliente = await _tipoClienteRepository.GetAllAsync();
+                return Ok(tiposCliente);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
+    }
+}

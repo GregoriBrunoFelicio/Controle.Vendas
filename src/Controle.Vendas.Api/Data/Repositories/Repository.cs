@@ -1,43 +1,43 @@
-﻿using Controle.Vendas.Api.Entidades;
+﻿using Controle.Vendas.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Controle.Vendas.Api.Data.Repositories
 {
     public interface IRepository<T>
     {
-        Task Add(T entity);
-        Task Update(T entity);
-        Task<T> Get(int id);
-        Task<IEnumerable<T>> GetAll();
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task<T?> GetAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync();
     }
 
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected ControleVendasContext _context;
-        protected DbSet<T> _dbSet;
+        protected ControleVendasContext Context;
+        protected DbSet<T> DbSet;
 
         public Repository(ControleVendasContext context)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            Context = context;
+            DbSet = context.Set<T>();
         }
 
-        public virtual async Task Add(T entity)
+        public virtual async Task AddAsync(T entity)
         {
-            await _context.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            await Context.AddAsync(entity);
+            await Context.SaveChangesAsync();
         }
 
-        public async Task<T> Get(int id) =>
-            await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+        public virtual async Task<T?> GetAsync(int id) =>
+            await DbSet.FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task<IEnumerable<T>> GetAll() => await _dbSet.ToListAsync();
+        public virtual async Task<IEnumerable<T>> GetAllAsync() => await DbSet.AsNoTracking().ToListAsync();
 
-        public async Task Update(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
-            var objFromDb = await _dbSet.FindAsync(entity.Id);
-            _context.Entry(objFromDb).CurrentValues.SetValues(entity);
-            await _context.SaveChangesAsync();
+            var objFromDb = await DbSet.FindAsync(entity.Id);
+            Context.Entry(objFromDb).CurrentValues.SetValues(entity);
+            await Context.SaveChangesAsync();
         }
     }
 }

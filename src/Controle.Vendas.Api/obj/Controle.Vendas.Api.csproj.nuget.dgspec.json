@@ -1,18 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj": {}
+    "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj": {
+    "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj",
+        "projectUniqueName": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj",
         "projectName": "Controle.Vendas.Api",
-        "projectPath": "E:\\Projects\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj",
+        "projectPath": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj",
         "packagesPath": "C:\\Users\\gregori.felicio\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\Controle.Vendas\\src\\Controle.Vendas.Api\\obj\\",
+        "outputPath": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\gregori.felicio\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -22,7 +25,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nexus.cubos.io/repository/aarin-nuget/": {}
         },
         "frameworks": {
           "net6.0": {
@@ -73,7 +77,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -85,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

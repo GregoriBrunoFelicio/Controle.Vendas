@@ -1,8 +1,9 @@
 ﻿using Controle.Vendas.Api.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Controle.Vendas.Api.Data.Repositories
 {
-    public interface ICompraRepository: IRepository<Compra>
+    public interface ICompraRepository : IRepository<Compra>
     {
     }
 
