@@ -4,14 +4,14 @@
     "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj": {}
   },
   "projects": {
-    "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj": {
+    "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj",
-        "projectName": "Controle.Vendas.Tests",
-        "projectPath": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj",
+        "projectUniqueName": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj",
+        "projectName": "Controle.Vendas.Api",
+        "projectPath": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj",
         "packagesPath": "C:\\Users\\gregori.felicio\\.nuget\\packages\\",
-        "outputPath": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\obj\\",
+        "outputPath": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,104 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj",
+        "projectName": "Controle.Vendas.Tests",
+        "projectPath": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj",
+        "packagesPath": "C:\\Users\\gregori.felicio\\.nuget\\packages\\",
+        "outputPath": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\gregori.felicio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nexus.cubos.io/repository/aarin-nuget/": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj": {
+                "projectPath": "C:\\wks\\Controle.Vendas\\src\\Controle.Vendas.Api\\Controle.Vendas.Api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.11.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.5.0, )"

@@ -1,6 +1,4 @@
-﻿using Controle.Vendas.Api.Entidades;
-
-namespace Controle.Vendas.Api.Entities
+﻿namespace Controle.Vendas.Api.Entities
 {
     public class Cliente : Entity
     {
