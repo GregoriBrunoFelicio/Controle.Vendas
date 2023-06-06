@@ -5,8 +5,9 @@ namespace Controle.Vendas.Api.Data.Repositories
 {
     public interface IClienteRepository : IRepository<Cliente>
     {
-        Task<IEnumerable<Cliente>> ComDividaAsync();
+        Task<IEnumerable<Cliente>> ObterComDividaAsync();
         Task InativarAsync(Cliente cliente);
+        Task<Cliente?> ObterPorNomeAsync(string nome);
     }
 
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
@@ -15,7 +16,7 @@ namespace Controle.Vendas.Api.Data.Repositories
         {
         }
 
-        public async Task<IEnumerable<Cliente>> ComDividaAsync()
+        public async Task<IEnumerable<Cliente>> ObterComDividaAsync()
         {
             var clientesComDividas = await DbSet
                 .AsNoTracking()
@@ -38,5 +39,9 @@ namespace Controle.Vendas.Api.Data.Repositories
             cliente.Ativo = false;
             await UpdateAsync(cliente);
         }
+
+        public async Task<Cliente?> ObterPorNomeAsync(string nome) =>
+            await DbSet.AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Nome == nome);
     }
 }

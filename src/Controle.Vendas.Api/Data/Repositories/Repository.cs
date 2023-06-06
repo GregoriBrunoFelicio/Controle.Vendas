@@ -7,7 +7,7 @@ namespace Controle.Vendas.Api.Data.Repositories
     {
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task<T?> GetAsync(int id);
+        Task<T?> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
     }
 
@@ -28,7 +28,7 @@ namespace Controle.Vendas.Api.Data.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public virtual async Task<T?> GetAsync(int id) =>
+        public virtual async Task<T?> GetByIdAsync(int id) =>
             await DbSet.FirstOrDefaultAsync(x => x.Id == id);
 
         public virtual async Task<IEnumerable<T>> GetAllAsync() => await DbSet.AsNoTracking().ToListAsync();

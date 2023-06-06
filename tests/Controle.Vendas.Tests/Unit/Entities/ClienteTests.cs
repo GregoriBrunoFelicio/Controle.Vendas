@@ -7,7 +7,7 @@ namespace Controle.Vendas.Tests.Unit.Entities
     public class ClienteTests
     {
         [Test]
-        public void Deve_Calcular_A_Divida_Do_Cliente_Corretamente()
+        public void Deve_Retornar_A_Divida_Do_Cliente_Corretamente()
         {
             var compras = new List<Compra>
             {

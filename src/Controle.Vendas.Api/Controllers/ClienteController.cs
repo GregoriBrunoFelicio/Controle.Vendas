@@ -62,7 +62,7 @@ namespace Controle.Vendas.Api.Controllers
         {
             try
             {
-                var cliente = await _clienteRepository.GetAsync(id);
+                var cliente = await _clienteRepository.GetByIdAsync(id);
 
                 if (cliente is null) return NotFound("Cliente não encontrado");
 
@@ -89,6 +89,6 @@ namespace Controle.Vendas.Api.Controllers
 
         [HttpGet("ComDivida")]
         public async Task<IEnumerable<Cliente>> ComDivida() =>
-              await _clienteRepository.ComDividaAsync();
+              await _clienteRepository.ObterComDividaAsync();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Controle.Vendas.Api.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Controle.Vendas.Api.Data.Repositories
 {
