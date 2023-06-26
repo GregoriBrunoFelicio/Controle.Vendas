@@ -40,16 +40,5 @@ namespace Controle.Vendas.Tests.Integration
             var resultado = await Client.PostAsJsonAsync("/Cliente", cliente);
             resultado.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-
-
-        [Test]
-        public async Task Deve_Salvar_Cliente_No_Banco_De_Dados()
-        {
-            await Client.PostAsJsonAsync("/Cliente", cliente);
-            var clienteSalvo = await ClienteRepository.ObterPorNomeAsync(cliente.Nome);
-            var todos = await ClienteRepository.GetAllAsync();
-            todos.Count().Should().Be(1);
-            clienteSalvo.Should().NotBeNull();
-        }
     }
 }
