@@ -1,0 +1,9 @@
+version: '3.8'
+services: 
+    controle-vendas-api:
+        image: controle-vendas-api
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        ports: 
+            - "8080:80"

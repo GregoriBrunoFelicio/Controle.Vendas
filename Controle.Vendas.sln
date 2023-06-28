@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle.Vendas.Api", "src\Controle.Vendas.Api\Controle.Vendas.Api.csproj", "{6F2868EA-FE83-424F-894F-CA6600FD894F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controle.Vendas.Tests", "tests\Controle.Vendas.Tests\Controle.Vendas.Tests.csproj", "{2F35AEA1-1579-4230-8D79-CD3617A4CE9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle.Vendas.Tests", "tests\Controle.Vendas.Tests\Controle.Vendas.Tests.csproj", "{2F35AEA1-1579-4230-8D79-CD3617A4CE9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

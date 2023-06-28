@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XDhIleGlM3P84UWHr2peGRJ0FXkHtAbYwN8kIUvE5oICleZT56WHd4Mcm3OCP5HTkIpokO4tOPAkW6+NjerFXg==",
+  "dgSpecHash": "iiMizwBGL4WQZCHL4EgEIjv2zRcy1GbyKPB+43pjShiLykjBftsOkdeOn8IZCV1pGgNt9LK5qYj2Hn9wXRK1oQ==",
   "success": true,
   "projectFilePath": "C:\\wks\\Controle.Vendas\\tests\\Controle.Vendas.Tests\\Controle.Vendas.Tests.csproj",
   "expectedPackageFiles": [
@@ -62,6 +62,7 @@
     "C:\\Users\\gregori.felicio\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\gregori.felicio\\.nuget\\packages\\microsoft.testplatform.objectmodel\\16.11.0\\microsoft.testplatform.objectmodel.16.11.0.nupkg.sha512",
     "C:\\Users\\gregori.felicio\\.nuget\\packages\\microsoft.testplatform.testhost\\16.11.0\\microsoft.testplatform.testhost.16.11.0.nupkg.sha512",
+    "C:\\Users\\gregori.felicio\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\gregori.felicio\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\gregori.felicio\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\gregori.felicio\\.nuget\\packages\\moq\\4.18.4\\moq.4.18.4.nupkg.sha512",
